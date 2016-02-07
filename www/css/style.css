@@ -1,0 +1,44 @@
+/*Other stuff */
+.center-wrapper {
+  text-align: center;
+}
+.center-button {
+  margin: 0 auto;
+}
+tabela @media ( min-width: 40em) {
+  /* Show the table header rows and set all cells to display: table-cell */
+  .my-custom-breakpoint td, .my-custom-breakpoint th, .my-custom-breakpoint tbody th, .my-custom-breakpoint tbody td, .my-custom-breakpoint thead td, .my-custom-breakpoint thead th {
+    display: table-cell;
+    margin: 0;
+  }
+  /* Hide the labels in each cell */
+  .my-custom-breakpoint td .ui-table-cell-label, .my-custom-breakpoint th .ui-table-cell-label {
+    display: none;
+  }
+}
+.container {
+  width: 90%;
+  margin: 30px auto;
+  padding: 25px;
+  min-height: 400px;
+  height: auto;
+}
+select, input {
+  padding: 10px;
+  border: 1px solid #a1a1a1;
+  font-size: 14px;
+}
+#exchange {
+  padding: 15px;
+  width: 250px;
+}
+.form {
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #a1a1a1;
+  padding: 40px;
+}

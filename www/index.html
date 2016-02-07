@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Calculadora Simples</title>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- Include the jQuery library -->
+  <script src="scripts/jquery-1.11.3.min.js"></script>
+  <!-- Include the jQuery Mobile library -->
+<  <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+
+  <!-- Include no JQuery Mobile FlatUI-->
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+  <!-- Include de Funcoes Javascript do Trabalho-->
+  <script src="scripts/funcoes.js"></script>
+  <script src="scripts/money.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+  <!-- Página Referente ao Menu Inicial -->
+  <div data-role="page" id="MenuInicial">
+    <div data-role="header" data-position="fixed">
+      <a href="javascript:navigator.app.exitApp()" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="#creditos" data-icon="flat-heart" class="ui-btn-right">Creditos</a>
+      <h1>Cáculos Rápidos</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <!-- Main do Menu Inicial -->
+      <!-- <img src="images/convertermoeda128.png" alt="conversor de moedas"></img> -->
+
+        <div class="ui-block-a "> <a href="#ConversorMoedas" data-role="button" onclick="cambios_localstorage_get()" data-icon="flat-settings" data-theme="b">Conversor Moedas</a></div>
+        <div class="ui-block-b"> <a href="#ConversorMedidas" data-role="button" data-icon="flat-cmd" data-theme="c">Conversor Medidas</a></div>
+
+
+        <div class="ui-block-a"> <a href="#ResolverEquacoes" data-role="button" data-icon="flat-new" data-theme="d">Equações</a></div>
+        <div class="ui-block-b"> <a href="#TeoremaPitagoras" data-role="button" data-icon="flat-man" data-theme="e">Pitágoras</a></div>
+
+
+        <div class="ui-block-a"> <a href="#regra3simples" data-role="button" data-icon="flat-heart" data-theme="f">Regra de 3 Simples  </a></div>
+        <div class="ui-block-b"> <a href="#raiz_n" data-role="button" data-icon="flat-heart" data-theme="a">Raíz de Ordem N  </a></div>
+
+    </div>
+    <!--Fim da Div do Main da Pagina inicial -->
+
+    <div data-role="footer" data-position="fixed">
+      <!-- Footer do Menu Inicial -->
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+  </div>
+  <!-- Fim do Menu Inicial-->
+
+
+  <!-- Página Referente ao Menu do Conversor de Moedas  -->
+  <div data-role="page" id="ConversorMoedas">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor de Moedas</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+      <div data-role="content">
+        <label for="amt" title="Introduza o valor a converter"> Importância a converter:</label>
+        <input type="number" id="amt" name="from-value" pattern="[0-9]*" value="0" min="0" max="999999999999999" onkeyup="convertermoeda()"  ononkeydown="convertermoeda()"/>
+
+        <!-- base select -->
+        <select name='base' id="base" title="Select currency to convert from">
+          <option value='AED' title='United Arab Emirates Dirham'>AED</option>
+          <option value='AFN' title='Afghan Afghani'>AFN</option>
+          <option value='ALL' title='Albanian Lek'>ALL</option>
+          <option value='AMD' title='Armenian Dram'>AMD</option>
+          <option value='ANG' title='Netherlands Antillean Guilder'>ANG</option>
+          <option value='AOA' title='Angolan Kwanza'>AOA</option>
+          <option value='ARS' title='Argentine Peso'>ARS</option>
+          <option value='AUD' title='Australian Dollar'>AUD</option>
+          <option value='AWG' title='Aruban Florin'>AWG</option>
+          <option value='AZN' title='Azerbaijani Manat'>AZN</option>
+          <option value='BAM' title='Bosnia-Herzegovina Convertible Mark'>BAM</option>
+          <option value='BBD' title='Barbadian Dollar'>BBD</option>
+          <option value='BDT' title='Bangladeshi Taka'>BDT</option>
+          <option value='BGN' title='Bulgarian Lev'>BGN</option>
+          <option value='BHD' title='Bahraini Dinar'>BHD</option>
+          <option value='BIF' title='Burundian Franc'>BIF</option>
+          <option value='BMD' title='Bermudan Dollar'>BMD</option>
+          <option value='BND' title='Brunei Dollar'>BND</option>
+          <option value='BOB' title='Bolivian Boliviano'>BOB</option>
+          <option value='BRL' title='Brazilian Real'>BRL</option>
+          <option value='BSD' title='Bahamian Dollar'>BSD</option>
+          <option value='BTN' title='Bhutanese Ngultrum'>BTN</option>
+          <option value='BWP' title='Botswanan Pula'>BWP</option>
+          <option value='BYR' title='Belarusian Ruble'>BYR</option>
+          <option value='BZD' title='Belize Dollar'>BZD</option>
+          <option value='CAD' title='Canadian Dollar'>CAD</option>
+          <option value='CDF' title='Congolese Franc'>CDF</option>
+          <option value='CHF' title='Swiss Franc'>CHF</option>
+          <option value='CLF' title='Chilean Unit of Account (UF)'>CLF</option>
+          <option value='CLP' title='Chilean Peso'>CLP</option>
+          <option value='CNY' title='Chinese Yuan'>CNY</option>
+          <option value='COP' title='Colombian Peso'>COP</option>
+          <option value='CRC' title='Costa Rican Col�n'>CRC</option>
+          <option value='CUP' title='Cuban Peso'>CUP</option>
+          <option value='CVE' title='Cape Verdean Escudo'>CVE</option>
+          <option value='CZK' title='Czech Republic Koruna'>CZK</option>
+          <option value='DJF' title='Djiboutian Franc'>DJF</option>
+          <option value='DKK' title='Danish Krone'>DKK</option>
+          <option value='DOP' title='Dominican Peso'>DOP</option>
+          <option value='DZD' title='Algerian Dinar'>DZD</option>
+          <option value='EGP' title='Egyptian Pound'>EGP</option>
+          <option value='ETB' title='Ethiopian Birr'>ETB</option>
+          <option value='EUR' title='Euro' selected>EUR</option>
+          <option value='FJD' title='Fijian Dollar'>FJD</option>
+          <option value='FKP' title='Falkland Islands Pound'>FKP</option>
+          <option value='GBP' title='British Pound Sterling'>GBP</option>
+          <option value='GEL' title='Georgian Lari'>GEL</option>
+          <option value='GHS' title='Ghanaian Cedi'>GHS</option>
+          <option value='GIP' title='Gibraltar Pound'>GIP</option>
+          <option value='GMD' title='Gambian Dalasi'>GMD</option>
+          <option value='GNF' title='Guinean Franc'>GNF</option>
+          <option value='GTQ' title='Guatemalan Quetzal'>GTQ</option>
+          <option value='GYD' title='Guyanaese Dollar'>GYD</option>
+          <option value='HKD' title='Hong Kong Dollar'>HKD</option>
+          <option value='HNL' title='Honduran Lempira'>HNL</option>
+          <option value='HRK' title='Croatian Kuna'>HRK</option>
+          <option value='HTG' title='Haitian Gourde'>HTG</option>
+          <option value='HUF' title='Hungarian Forint'>HUF</option>
+          <option value='IDR' title='Indonesian Rupiah'>IDR</option>
+          <option value='ILS' title='Israeli New Sheqel'>ILS</option>
+          <option value='INR' title='Indian Rupee'>INR</option>
+          <option value='IQD' title='Iraqi Dinar'>IQD</option>
+          <option value='IRR' title='Iranian Rial'>IRR</option>
+          <option value='ISK' title='Icelandic Kr�na'>ISK</option>
+          <option value='JEP' title='Jersey Pound'>JEP</option>
+          <option value='JMD' title='Jamaican Dollar'>JMD</option>
+          <option value='JOD' title='Jordanian Dinar'>JOD</option>
+          <option value='JPY' title='Japanese Yen'>JPY</option>
+          <option value='KES' title='Kenyan Shilling'>KES</option>
+          <option value='KGS' title='Kyrgystani Som'>KGS</option>
+          <option value='KHR' title='Cambodian Riel'>KHR</option>
+          <option value='KMF' title='Comorian Franc'>KMF</option>
+          <option value='KPW' title='North Korean Won'>KPW</option>
+          <option value='KRW' title='South Korean Won'>KRW</option>
+          <option value='KWD' title='Kuwaiti Dinar'>KWD</option>
+          <option value='KYD' title='Cayman Islands Dollar'>KYD</option>
+          <option value='KZT' title='Kazakhstani Tenge'>KZT</option>
+          <option value='LAK' title='Laotian Kip'>LAK</option>
+          <option value='LBP' title='Lebanese Pound'>LBP</option>
+          <option value='LKR' title='Sri Lankan Rupee'>LKR</option>
+          <option value='LRD' title='Liberian Dollar'>LRD</option>
+          <option value='LSL' title='Lesotho Loti'>LSL</option>
+          <option value='LTL' title='Lithuanian Litas'>LTL</option>
+          <option value='LVL' title='Latvian Lats'>LVL</option>
+          <option value='LYD' title='Libyan Dinar'>LYD</option>
+          <option value='MAD' title='Moroccan Dirham'>MAD</option>
+          <option value='MDL' title='Moldovan Leu'>MDL</option>
+          <option value='MGA' title='Malagasy Ariary'>MGA</option>
+          <option value='MKD' title='Macedonian Denar'>MKD</option>
+          <option value='MMK' title='Myanma Kyat'>MMK</option>
+          <option value='MNT' title='Mongolian Tugrik'>MNT</option>
+          <option value='MOP' title='Macanese Pataca'>MOP</option>
+          <option value='MRO' title='Mauritanian Ouguiya'>MRO</option>
+          <option value='MUR' title='Mauritian Rupee'>MUR</option>
+          <option value='MVR' title='Maldivian Rufiyaa'>MVR</option>
+          <option value='MWK' title='Malawian Kwacha'>MWK</option>
+          <option value='MXN' title='Mexican Peso'>MXN</option>
+          <option value='MYR' title='Malaysian Ringgit'>MYR</option>
+          <option value='MZN' title='Mozambican Metical'>MZN</option>
+          <option value='NAD' title='Namibian Dollar'>NAD</option>
+          <option value='NGN' title='Nigerian Naira'>NGN</option>
+          <option value='NIO' title='Nicaraguan C�rdoba'>NIO</option>
+          <option value='NOK' title='Norwegian Krone'>NOK</option>
+          <option value='NPR' title='Nepalese Rupee'>NPR</option>
+          <option value='NZD' title='New Zealand Dollar'>NZD</option>
+          <option value='OMR' title='Omani Rial'>OMR</option>
+          <option value='PAB' title='Panamanian Balboa'>PAB</option>
+          <option value='PEN' title='Peruvian Nuevo Sol'>PEN</option>
+          <option value='PGK' title='Papua New Guinean Kina'>PGK</option>
+          <option value='PHP' title='Philippine Peso'>PHP</option>
+          <option value='PKR' title='Pakistani Rupee'>PKR</option>
+          <option value='PLN' title='Polish Zloty'>PLN</option>
+          <option value='PYG' title='Paraguayan Guarani'>PYG</option>
+          <option value='QAR' title='Qatari Rial'>QAR</option>
+          <option value='RON' title='Romanian Leu'>RON</option>
+          <option value='RSD' title='Serbian Dinar'>RSD</option>
+          <option value='RUB' title='Russian Ruble'>RUB</option>
+          <option value='RWF' title='Rwandan Franc'>RWF</option>
+          <option value='SAR' title='Saudi Riyal'>SAR</option>
+          <option value='SBD' title='Solomon Islands Dollar'>SBD</option>
+          <option value='SCR' title='Seychellois Rupee'>SCR</option>
+          <option value='SDG' title='Sudanese Pound'>SDG</option>
+          <option value='SEK' title='Swedish Krona'>SEK</option>
+          <option value='SGD' title='Singapore Dollar'>SGD</option>
+          <option value='SHP' title='Saint Helena Pound'>SHP</option>
+          <option value='SLL' title='Sierra Leonean Leone'>SLL</option>
+          <option value='SOS' title='Somali Shilling'>SOS</option>
+          <option value='SRD' title='Surinamese Dollar'>SRD</option>
+          <option value='STD' title='S�o Tom� and Pr�ncipe Dobra'>STD</option>
+          <option value='SVC' title='Salvadoran Col�n'>SVC</option>
+          <option value='SYP' title='Syrian Pound'>SYP</option>
+          <option value='SZL' title='Swazi Lilangeni'>SZL</option>
+          <option value='THB' title='Thai Baht'>THB</option>
+          <option value='TJS' title='Tajikistani Somoni'>TJS</option>
+          <option value='TMT' title='Turkmenistani Manat'>TMT</option>
+          <option value='TND' title='Tunisian Dinar'>TND</option>
+          <option value='TOP' title='Tongan Pa?anga'>TOP</option>
+          <option value='TRY' title='Turkish Lira'>TRY</option>
+          <option value='TTD' title='Trinidad and Tobago Dollar'>TTD</option>
+          <option value='TWD' title='New Taiwan Dollar'>TWD</option>
+          <option value='TZS' title='Tanzanian Shilling'>TZS</option>
+          <option value='UAH' title='Ukrainian Hryvnia'>UAH</option>
+          <option value='UGX' title='Ugandan Shilling'>UGX</option>
+          <option value='USD' title='United States Dollar'>USD</option>
+          <option value='UYU' title='Uruguayan Peso'>UYU</option>
+          <option value='UZS' title='Uzbekistan Som'>UZS</option>
+          <option value='VEF' title='Venezuelan Bol�var'>VEF</option>
+          <option value='VND' title='Vietnamese Dong'>VND</option>
+          <option value='VUV' title='Vanuatu Vatu'>VUV</option>
+          <option value='WST' title='Samoan Tala'>WST</option>
+          <option value='XAF' title='CFA Franc BEAC'>XAF</option>
+          <option value='XCD' title='East Caribbean Dollar'>XCD</option>
+          <option value='XDR' title='Special Drawing Rights'>XDR</option>
+          <option value='XOF' title='CFA Franc BCEAO'>XOF</option>
+          <option value='XPF' title='CFP Franc'>XPF</option>
+          <option value='YER' title='Yemeni Rial'>YER</option>
+          <option value='ZAR' title='South African Rand'>ZAR</option>
+          <option value='ZMK' title='Zambian Kwacha'>ZMK</option>
+          <option value='ZWL' title='Zimbabwean Dollar'>ZWL</option>
+        </select>
+        <!-- /base -->
+
+        <!-- destination select -->
+        <select name='dest' id="dest" title="Select currency to convert to">
+
+          <option value='AED' title='United Arab Emirates Dirham'>AED</option>
+          <option value='AFN' title='Afghan Afghani'>AFN</option>
+          <option value='ALL' title='Albanian Lek'>ALL</option>
+          <option value='AMD' title='Armenian Dram'>AMD</option>
+          <option value='ANG' title='Netherlands Antillean Guilder'>ANG</option>
+          <option value='AOA' title='Angolan Kwanza'>AOA</option>
+          <option value='ARS' title='Argentine Peso'>ARS</option>
+          <option value='AUD' title='Australian Dollar'>AUD</option>
+          <option value='AWG' title='Aruban Florin'>AWG</option>
+          <option value='AZN' title='Azerbaijani Manat'>AZN</option>
+          <option value='BAM' title='Bosnia-Herzegovina Convertible Mark'>BAM</option>
+          <option value='BBD' title='Barbadian Dollar'>BBD</option>
+          <option value='BDT' title='Bangladeshi Taka'>BDT</option>
+          <option value='BGN' title='Bulgarian Lev'>BGN</option>
+          <option value='BHD' title='Bahraini Dinar'>BHD</option>
+          <option value='BIF' title='Burundian Franc'>BIF</option>
+          <option value='BMD' title='Bermudan Dollar'>BMD</option>
+          <option value='BND' title='Brunei Dollar'>BND</option>
+          <option value='BOB' title='Bolivian Boliviano'>BOB</option>
+          <option value='BRL' title='Brazilian Real'>BRL</option>
+          <option value='BSD' title='Bahamian Dollar'>BSD</option>
+          <option value='BTN' title='Bhutanese Ngultrum'>BTN</option>
+          <option value='BWP' title='Botswanan Pula'>BWP</option>
+          <option value='BYR' title='Belarusian Ruble'>BYR</option>
+          <option value='BZD' title='Belize Dollar'>BZD</option>
+          <option value='CAD' title='Canadian Dollar'>CAD</option>
+          <option value='CDF' title='Congolese Franc'>CDF</option>
+          <option value='CHF' title='Swiss Franc' selected>CHF</option>
+          <option value='CLF' title='Chilean Unit of Account (UF)'>CLF</option>
+          <option value='CLP' title='Chilean Peso'>CLP</option>
+          <option value='CNY' title='Chinese Yuan'>CNY</option>
+          <option value='COP' title='Colombian Peso'>COP</option>
+          <option value='CRC' title='Costa Rican Col�n'>CRC</option>
+          <option value='CUP' title='Cuban Peso'>CUP</option>
+          <option value='CVE' title='Cape Verdean Escudo'>CVE</option>
+          <option value='CZK' title='Czech Republic Koruna'>CZK</option>
+          <option value='DJF' title='Djiboutian Franc'>DJF</option>
+          <option value='DKK' title='Danish Krone'>DKK</option>
+          <option value='DOP' title='Dominican Peso'>DOP</option>
+          <option value='DZD' title='Algerian Dinar'>DZD</option>
+          <option value='EGP' title='Egyptian Pound'>EGP</option>
+          <option value='ETB' title='Ethiopian Birr'>ETB</option>
+          <option value='EUR' title='Euro'>EUR</option>
+          <option value='FJD' title='Fijian Dollar'>FJD</option>
+          <option value='FKP' title='Falkland Islands Pound'>FKP</option>
+          <option value='GBP' title='British Pound Sterling'>GBP</option>
+          <option value='GEL' title='Georgian Lari'>GEL</option>
+          <option value='GHS' title='Ghanaian Cedi'>GHS</option>
+          <option value='GIP' title='Gibraltar Pound'>GIP</option>
+          <option value='GMD' title='Gambian Dalasi'>GMD</option>
+          <option value='GNF' title='Guinean Franc'>GNF</option>
+          <option value='GTQ' title='Guatemalan Quetzal'>GTQ</option>
+          <option value='GYD' title='Guyanaese Dollar'>GYD</option>
+          <option value='HKD' title='Hong Kong Dollar'>HKD</option>
+          <option value='HNL' title='Honduran Lempira'>HNL</option>
+          <option value='HRK' title='Croatian Kuna'>HRK</option>
+          <option value='HTG' title='Haitian Gourde'>HTG</option>
+          <option value='HUF' title='Hungarian Forint'>HUF</option>
+          <option value='IDR' title='Indonesian Rupiah'>IDR</option>
+          <option value='ILS' title='Israeli New Sheqel'>ILS</option>
+          <option value='INR' title='Indian Rupee'>INR</option>
+          <option value='IQD' title='Iraqi Dinar'>IQD</option>
+          <option value='IRR' title='Iranian Rial'>IRR</option>
+          <option value='ISK' title='Icelandic Krona'>ISK</option>
+          <option value='JEP' title='Jersey Pound'>JEP</option>
+          <option value='JMD' title='Jamaican Dollar'>JMD</option>
+          <option value='JOD' title='Jordanian Dinar'>JOD</option>
+          <option value='JPY' title='Japanese Yen'>JPY</option>
+          <option value='KES' title='Kenyan Shilling'>KES</option>
+          <option value='KGS' title='Kyrgystani Som'>KGS</option>
+          <option value='KHR' title='Cambodian Riel'>KHR</option>
+          <option value='KMF' title='Comorian Franc'>KMF</option>
+          <option value='KPW' title='North Korean Won'>KPW</option>
+          <option value='KRW' title='South Korean Won'>KRW</option>
+          <option value='KWD' title='Kuwaiti Dinar'>KWD</option>
+          <option value='KYD' title='Cayman Islands Dollar'>KYD</option>
+          <option value='KZT' title='Kazakhstani Tenge'>KZT</option>
+          <option value='LAK' title='Laotian Kip'>LAK</option>
+          <option value='LBP' title='Lebanese Pound'>LBP</option>
+          <option value='LKR' title='Sri Lankan Rupee'>LKR</option>
+          <option value='LRD' title='Liberian Dollar'>LRD</option>
+          <option value='LSL' title='Lesotho Loti'>LSL</option>
+          <option value='LTL' title='Lithuanian Litas'>LTL</option>
+          <option value='LVL' title='Latvian Lats'>LVL</option>
+          <option value='LYD' title='Libyan Dinar'>LYD</option>
+          <option value='MAD' title='Moroccan Dirham'>MAD</option>
+          <option value='MDL' title='Moldovan Leu'>MDL</option>
+          <option value='MGA' title='Malagasy Ariary'>MGA</option>
+          <option value='MKD' title='Macedonian Denar'>MKD</option>
+          <option value='MMK' title='Myanma Kyat'>MMK</option>
+          <option value='MNT' title='Mongolian Tugrik'>MNT</option>
+          <option value='MOP' title='Macanese Pataca'>MOP</option>
+          <option value='MRO' title='Mauritanian Ouguiya'>MRO</option>
+          <option value='MUR' title='Mauritian Rupee'>MUR</option>
+          <option value='MVR' title='Maldivian Rufiyaa'>MVR</option>
+          <option value='MWK' title='Malawian Kwacha'>MWK</option>
+          <option value='MXN' title='Mexican Peso'>MXN</option>
+          <option value='MYR' title='Malaysian Ringgit'>MYR</option>
+          <option value='MZN' title='Mozambican Metical'>MZN</option>
+          <option value='NAD' title='Namibian Dollar'>NAD</option>
+          <option value='NGN' title='Nigerian Naira'>NGN</option>
+          <option value='NIO' title='Nicaraguan C�rdoba'>NIO</option>
+          <option value='NOK' title='Norwegian Krone'>NOK</option>
+          <option value='NPR' title='Nepalese Rupee'>NPR</option>
+          <option value='NZD' title='New Zealand Dollar'>NZD</option>
+          <option value='OMR' title='Omani Rial'>OMR</option>
+          <option value='PAB' title='Panamanian Balboa'>PAB</option>
+          <option value='PEN' title='Peruvian Nuevo Sol'>PEN</option>
+          <option value='PGK' title='Papua New Guinean Kina'>PGK</option>
+          <option value='PHP' title='Philippine Peso'>PHP</option>
+          <option value='PKR' title='Pakistani Rupee'>PKR</option>
+          <option value='PLN' title='Polish Zloty'>PLN</option>
+          <option value='PYG' title='Paraguayan Guarani'>PYG</option>
+          <option value='QAR' title='Qatari Rial'>QAR</option>
+          <option value='RON' title='Romanian Leu'>RON</option>
+          <option value='RSD' title='Serbian Dinar'>RSD</option>
+          <option value='RUB' title='Russian Ruble'>RUB</option>
+          <option value='RWF' title='Rwandan Franc'>RWF</option>
+          <option value='SAR' title='Saudi Riyal'>SAR</option>
+          <option value='SBD' title='Solomon Islands Dollar'>SBD</option>
+          <option value='SCR' title='Seychellois Rupee'>SCR</option>
+          <option value='SDG' title='Sudanese Pound'>SDG</option>
+          <option value='SEK' title='Swedish Krona'>SEK</option>
+          <option value='SGD' title='Singapore Dollar'>SGD</option>
+          <option value='SHP' title='Saint Helena Pound'>SHP</option>
+          <option value='SLL' title='Sierra Leonean Leone'>SLL</option>
+          <option value='SOS' title='Somali Shilling'>SOS</option>
+          <option value='SRD' title='Surinamese Dollar'>SRD</option>
+          <option value='STD' title='S�o Tom� and Pr�ncipe Dobra'>STD</option>
+          <option value='SVC' title='Salvadoran Col�n'>SVC</option>
+          <option value='SYP' title='Syrian Pound'>SYP</option>
+          <option value='SZL' title='Swazi Lilangeni'>SZL</option>
+          <option value='THB' title='Thai Baht'>THB</option>
+          <option value='TJS' title='Tajikistani Somoni'>TJS</option>
+          <option value='TMT' title='Turkmenistani Manat'>TMT</option>
+          <option value='TND' title='Tunisian Dinar'>TND</option>
+          <option value='TOP' title='Tongan Pa?anga'>TOP</option>
+          <option value='TRY' title='Turkish Lira'>TRY</option>
+          <option value='TTD' title='Trinidad and Tobago Dollar'>TTD</option>
+          <option value='TWD' title='New Taiwan Dollar'>TWD</option>
+          <option value='TZS' title='Tanzanian Shilling'>TZS</option>
+          <option value='UAH' title='Ukrainian Hryvnia'>UAH</option>
+          <option value='UGX' title='Ugandan Shilling'>UGX</option>
+          <option value='USD' title='United States Dollar'>USD</option>
+          <option value='UYU' title='Uruguayan Peso'>UYU</option>
+          <option value='UZS' title='Uzbekistan Som'>UZS</option>
+          <option value='VEF' title='Venezuelan Bol�var'>VEF</option>
+          <option value='VND' title='Vietnamese Dong'>VND</option>
+          <option value='VUV' title='Vanuatu Vatu'>VUV</option>
+          <option value='WST' title='Samoan Tala'>WST</option>
+          <option value='XAF' title='CFA Franc BEAC'>XAF</option>
+          <option value='XCD' title='East Caribbean Dollar'>XCD</option>
+          <option value='XDR' title='Special Drawing Rights'>XDR</option>
+          <option value='XOF' title='CFA Franc BCEAO'>XOF</option>
+          <option value='XPF' title='CFP Franc'>XPF</option>
+          <option value='YER' title='Yemeni Rial'>YER</option>
+          <option value='ZAR' title='South African Rand'>ZAR</option>
+          <option value='ZMK' title='Zambian Kwacha'>ZMK</option>
+          <option value='ZWL' title='Zimbabwean Dollar'>ZWL</option>
+        </select>
+        <div>
+        <input type="button" name="button1" value="Trocar Moedas" onClick="trocarselect()">
+        </div>
+        <div id="result">
+        <input type="text" readonly id="resultado_convertido">
+      </div>
+      </div>
+    </div>
+    <!--Fim da Div do Main da Pagina do Conversor de Moedas -->
+
+    <div data-role="footer" data-position="fixed">
+
+    <center>  <a href="#" data-role="button" data-icon="refresh" onClick="cambios_localstorage_set()">Atualizar Taxas de Cambio</a>  </center>
+      <h1> Bruno Ribeiro & Cláudia Trigo</h1>
+
+    </div>
+
+  </div>
+  <!--Fim da Pagina do Convesor de Moedas -->
+
+  <!-- Página Referente ao Menu do Conversor de Medidas  -->
+  <div data-role="page" id="ConversorMedidas">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor de Medidas</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+
+
+
+        <div class="ui-block-a "> <a href="#ConversorPeso" data-role="button" data-icon="flat-settings" data-theme="b">Peso</a></div>
+        <div class="ui-block-a"> <a href="#ConversorComprimento" data-role="button" data-icon="flat-cmd" data-theme="c">Comprimento</a></div>
+
+
+        <div class="ui-block-a"> <a href="#ConversorVelocidade" data-role="button" data-icon="flat-new" data-theme="d">Velocidade</a></div>
+        <div class="ui-block-a"> <a href="#ConversorArmazenamento" data-role="button" data-icon="flat-man" data-theme="e">Armazenamento</a></div>
+
+
+
+    </div>
+    <!--Fim da Div do Main da Pagina do Conversor de Medidas -->
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+
+  </div>
+  <!--Fim da Pagina do Convesor de Medidas -->
+
+  <!-- Conversor de Peso  -->
+  <div data-role="page" id="ConversorPeso">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor - Unidades de Massa</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+      <div>
+        <label name="Escolha a Unidade de Medida">Escolha a sua unidade de medida</label>
+        <select name="Select Unidade de Peso" id="select_unidade_peso" data-mini="true" onchange="conv_peso()">
+          <option value="tonelada">Tonelada</option>
+          <option value="kg">Quiograma</option>
+          <option value="grama">Grama</option>
+          <option value="arroba">Arroba</option>
+          <option value="stone">Stone</option>
+          <option value="libra">Libras</option>
+          <option value="oz">Onças</option>
+        </select>
+
+
+        <input id="valorpeso" onkeyup="conv_peso()" type="number" data-mini="true" name="valor" min="0" max="999999999">
+        <div id="tabela_peso" anchor="right">
+          <br />
+          <table data-role="table" data-mode="reflow" class="ui-responsive table-stripe">
+            <thead>
+              <tr>
+                <!--    <th>Unidade</th>
+                <th>Valor</th> </-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tonelada</td>
+                <td id="td_tonelada"></td>
+
+              </tr>
+              <tr>
+                <td>Quilograma</td>
+                <td id="td_quilograma"></td>
+
+              </tr>
+              <tr>
+                <td>Grama</td>
+                <td id="td_grama"></td>
+
+              </tr>
+              <tr>
+                <td>Arroba</td>
+                <td id="td_arroba"></td>
+              </tr>
+              <tr>
+                <td>Stone</td>
+                <td id="td_stone"></td>
+
+              </tr>
+              <tr>
+                <td>Libra</td>
+                <td id="td_libra"></td>
+
+              </tr>
+              <tr>
+                <td>Onça</td>
+                <td id="td_oz"></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+
+  </div>
+  <!--Fim da Pagina do Convesor de Peso -->
+
+  <!-- Conversor de Comprimento  -->
+  <div data-role="page" id="ConversorComprimento">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor - Unidades de Comprimento</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+      <div>
+        <label name="Escolha a Unidade de Medida">Escolha a sua unidade de medida</label>
+        <select name="Select Unidade de Comprimento" id="select_unidade_comprimento" data-mini="true" onchange="conv_comprimento()">
+          <option value="km">Quilómetro</option>
+          <option value="m">Metro</option>
+          <option value="cm">Centímetro</option>
+          <option value="mm">Milímetro</option>
+          <option value="legua">Legua</option>
+          <option value="milha">Milha</option>
+          <option value="jarda">Jarda</option>
+          <option value="pe">Pé</option>
+          <option value="polegada">Polegada</option>
+        </select>
+
+
+        <input id="valorcomprimento" onkeyup="conv_comprimento()" type="number" data-mini="true" name="valor" min="0" max="999999999">
+        <div id="tabela_comprimento" anchor="right">
+          <br />
+          <table data-role="table" data-mode="reflow" class="ui-responsive table-stripe">
+            <thead>
+              <tr>
+                <!--    <th>Unidade</th>
+                <th>Valor</th> </-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Km</td>
+                <td id="td_km"></td>
+
+              </tr>
+              <tr>
+                <td>Metros</td>
+                <td id="td_m"></td>
+
+              </tr>
+              <tr>
+                <td>Centímetros</td>
+                <td id="td_cm"></td>
+
+              </tr>
+              <tr>
+                <td>Milímetros</td>
+                <td id="td_mm"></td>
+              </tr>
+              <tr>
+                <td>Léguas</td>
+                <td id="td_legua"></td>
+
+                <tr>
+                  <td>Milhas</td>
+                  <td id="td_milha"></td>
+
+                </tr>
+              </tr>
+              <tr>
+                <td>Jardas</td>
+                <td id="td_jarda"></td>
+
+              </tr>
+              <tr>
+                <td>Pés</td>
+                <td id="td_pe"></td>
+
+              </tr>
+              <tr>
+                <td>Polegadas</td>
+                <td id="td_polegada"></td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+
+  </div>
+  <!--Fim da Pagina do Convesor de Comprimento -->
+
+  <!-- Conversor de Velocidade  -->
+  <div data-role="page" id="ConversorVelocidade">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor - Unidades de Velocidade</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+      <div>
+        <label name="Escolha a Unidade de Medida">Escolha a sua unidade de medida</label>
+        <select name="Select Unidade de velocidade" id="select_unidade_velocidade" data-mini="true" onchange="conv_velocidade()">
+          <option value="kmh">Km/h</option>
+          <option value="mph">Mph</option>
+          <option value="mps">m/s</option>
+        </select>
+
+
+        <input id="valorvelocidade" onkeyup="conv_velocidade()" type="number" data-mini="true" name="valor" min="0" max="999999999">
+        <div id="tabela_velocidade" anchor="right">
+          <br />
+          <table data-role="table" class="ui-responsive table-stripe">
+            <thead>
+              <tr>
+                <!--    <th>Unidade</th>
+                <th>Valor</th> </-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Km/h</td>
+                <td id="td_kmh"></td>
+
+              </tr>
+              <tr>
+                <td>Mph</td>
+                <td id="td_mph"></td>
+
+              </tr>
+              <tr>
+                <td>m/s</td>
+                <td id="td_mps"></td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+
+  </div>
+
+  <!-- Conversor de Armazenamento  -->
+  <div data-role="page" id="ConversorArmazenamento">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Conversor - Unidades de Armazenamento</h1>
+    </div>
+
+
+    <div data-role="main" class="ui-content">
+      <div>
+        <label name="Escolha a Unidade de Medida">Escolha a sua unidade de medida</label>
+        <select name="Select Unidade de Armazenamento" id="select_unidade_armazenamento" data-mini="true" onchange="conv_armazenamento()">
+          <option value="bit">Bit</option>
+          <option value="kilobit">Kilobit</option>
+          <option value="megabit">Megabit</option>
+          <option value="gigabit">Gigabit</option>
+          <option value="byte">byte</option>
+          <option value="kilobyte">Kilobyte</option>
+          <option value="megabyte">Megabyte</option>
+          <option value="gigabyte">Gigabyte</option>
+        </select>
+
+
+        <input id="valorbitsbytes" onkeyup="conv_armazenamento()" type="number" data-mini="true" name="valor" min="0" max="999999999">
+        <div id="tabela_armazenamento" anchor="right">
+          <br />
+          <table data-role="table" class="ui-responsive table-stripe">
+            <thead>
+              <tr>
+                <!--    <th>Unidade</th>
+                <th>Valor</th> </-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>bit</td>
+                <td id="td_bit"></td>
+
+              </tr>
+              <tr>
+                <td>kilobit</td>
+                <td id="td_kilobit"></td>
+
+              </tr>
+              <tr>
+                <td>megabit</td>
+                <td id="td_megabit"></td>
+
+              </tr>
+              <tr>
+                <td>gigabit</td>
+                <td id="td_gigabit"></td>
+
+              </tr>
+              <tr>
+                <td>byte</td>
+                <td id="td_byte"></td>
+
+              </tr>
+              <tr>
+                <td>kilobyte</td>
+                <td id="td_kilobyte"></td>
+
+              </tr>
+              <tr>
+                <td>megabyte</td>
+                <td id="td_megabyte"></td>
+
+              </tr>
+              <tr>
+                <td>gigabyte</td>
+                <td id="td_gigabyte"></td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+
+
+
+
+
+  </div>
+
+
+  <div data-role="page" id="regra3simples">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Regra 3 Simples</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+
+
+
+<div align="center">
+  <p>
+    A está para B assim como C está para X
+<br /><br />
+  A ---------- B
+  <br />
+C ---------- X
+  </p>
+</div>
+
+
+        <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><label for="regra3_A">A</label><input type="number" name="a" id="regra3_A"></div>
+        <div class="ui-block-b"><label for="regra3_B">B</label><label for="regra3_A"></label><input type="number" name="a" id="regra3_B"></div>
+        </fieldset>
+
+        <fieldset class="ui-grid-a">
+          <div class="ui-block-a"><label for="regra3_C">C</label><input type="number" name="a" id="regra3_C"></div>
+        <div class="ui-block-b"><label for="valordex">X</label><input type="number" name="a" id="valordex" readonly></div>
+        </fieldset>
+              <button id="btn_regra3" text="calcular" onClick="regra_3_simples()">Calcular</button>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+  </div>
+  <div data-role="page" id="raiz_n">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Raíz de ordem N</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <p>
+    <center>  <img src= "images/raizordemn.png"></img></center>
+      </p>
+      n
+      <input type="number" name="n" id="raizn_n" onkeypress="nthRoot()" onkeyup="nthRoot()">
+      <P>
+        a
+        <input type="number" name="a" id="raizn_a" default="1"onkeyup="nthRoot()" onkeypress="nthRoot()">
+        <P>
+
+          Resultado (x):
+          <input type="number" id="raizn_resultado" readonly>
+    </div>
+    <div data-role="footer"  data-position="fixed" >
+      <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+    </div>
+  </div>
+
+  <div data-role="page" id="ResolverEquacoes">
+    <div data-role="header" data-position="fixed">
+      <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+      <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+      <h1>Solver de Equações</h1>
+    </div>
+    <div role="main" class="ui-content">
+      <div data-role="tabs">
+        <div data-role="navbar">
+          <ul>
+            <li><a href="#2Grau" class="ui-btn-active">2.º Grau</a></li>
+            <li><a href="#3Grau">3.º Grau</a></li>
+          </ul>
+        </div>
+        <div id="2Grau">
+          <div>
+            <b>Fórmula Resolvente</b> Uma equação quadrática é uma curva da família das parábolas
+            <br /> As equações quadráticas têm o formato: ax<sup>2</sup>+bx+c=0.
+            <br />
+            <br />A
+            <input type="number" id="valA" name="valA">B
+            <input type="number" id="valB" name="valB">C
+            <input type="number" id="valC" name="valC">
+
+            <button id="btn_raizescalcular" text="calcular" onClick="calcular_raizes()">Calcular</button>
+            Raiz 1:
+            <input type="text" id="raiz_1" name="raiz1" readonly> Raiz 2:
+            <input type="text" id="raiz_2" name="raiz2" readonly>
+          </div>
+        </div>
+        <div id="3Grau">
+          <div>
+            <p class="cardica">Insira os coeficientes reais <strong>a, </strong><strong>b, c </strong>&amp; <strong>d</strong> de equa&ccedil;&otilde;es da forma:</p>
+            <p align="center" class="cardica"><em>ax<SUP>3</SUP> + b<em>x<SUP>2</SUP></em> + cx + d = 0</em>.</p>
+            <p class="cardica">Os coeficientes podem ser quaisquer n&uacute;meros reais (a n&atilde;o nulo). Lembre-se que se todos os coeficientes s&atilde;o reais, ent&atilde;o pelo menos uma raiz ser&aacute; real. <span class="style4">N&atilde;o deixe campos em branco.</span></p>
+            <form name="form1">
+              <p>
+                <p align="center" class="cardica"><em>
+                                       <input id="3grau_A" type = "number" size="4">
+                                 x<SUP>3</SUP>&nbsp; +
+                                 <input id="3grau_B" type = "number" size="4">
+                                 <em>x<SUP>2</SUP></em>&nbsp; +
+                  <input id="3grau_C" type="number" size="4"> x&nbsp; +
+                  <input id="3grau_D" type="number" size="4"> = 0</em>.
+                  <p align="center">
+                    <input type="button" name="button1" value="Calcule as solu&ccedil;&otilde;es" onClick="raizcubica()">
+                    <p>&nbsp;</p>
+                    <table width="100%" cellpadding="5" cellspacing="3">
+                      <tr>
+                        <td width="50">
+                          <div align="center"></div>
+                        </td>
+                        <td>parte real </td>
+                        <td>&nbsp;</td>
+                        <td>parte imagin&aacute;ria </td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div align="right" class="cardica">
+                            <div align="left">x<sub>1</sub><font color="#333333"></font></div>
+                          </div>
+                        </td>
+                        <td>
+                          <input type="number" readonly id="x1_real" size="25">
+                        </td>
+                        <td>
+                          <div align="center">+</div>
+                        </td>
+                        <td>
+                          <input type="number" readonly id="x1_imaginario" size="25">
+                        </td>
+                        <td>i</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div align="right" class="cardica">
+                            <div align="left">x<sub>2</sub><font color="#333333"></font></div>
+                          </div>
+                        </td>
+                        <td>
+                          <input type="text" readonly id="x2_real" size="25">
+                        </td>
+                        <td>
+                          <div align="center">+</div>
+                        </td>
+                        <td>
+                          <input type="text" readonly id="x2_imaginario" size="25">
+                        </td>
+                        <td>i</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div align="right" class="cardica">
+                            <div align="left">x<sub>3</sub><font color="#333333"></font></div>
+                          </div>
+                        </td>
+                        <td>
+                          <input type="text" readonly id="x3_real" size="25">
+                        </td>
+                        <td>
+                          <div align="center">+</div>
+                        </td>
+                        <td>
+                          <input type="text" readonly id="x3_imaginario" size="25">
+                        </td>
+                        <td>i</td>
+                      </tr>
+                    </table>
+            </form> Como o método de cálculo é numérico, aproveite alguns tipos de resuldados de p(x) = 0 para fazer os cálculos à mão. Por exemplo, aproveitar uma raíz A para dividir p(x) por x - A e resolver a equação do 2° grau.
+            <br>
+            <br> Tente ver se uma solução aproximada é, na verdade, um número racional. Por exemplo, é apresentado que uma solução 1,99999999999 que pode ser o número 2. Basta, para tirar essa dúvida verificar se p(2) = 0. </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Teorema de pitágoras-->
+
+<div data-role="page" id="TeoremaPitagoras">
+  <div data-role="header" data-position="fixed">
+    <a href="#" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
+    <a href="index.html" data-icon="home" class="ui-btn-right">Home</a>
+    <h1>Teorema de Pitágoras</h1>
+  </div>
+  <div role="main" class="ui-content">
+    <h3>Escolha o lado que deseja calcular:</h3>
+    <div data-role="tabs">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#hipotenusa" class="ui-btn-active">Hipotenusa</a></li>
+          <li><a href="#catetos">Cateto</a></li>
+        </ul>
+      </div>
+      <div id="hipotenusa">
+        <div>
+          <P>Teorema de Pitagoras
+            <BR> h&sup2= a &sup2 + b&sup2
+            <P>
+
+              a
+              <input type="number" name="a" id="pitagoras_A">
+              <P>
+                b
+                <input type="number" name="b" id="pitagoras_B">
+                <P>
+                  <button id="btn_teoremacalcular" text="calcular" onClick="pitagoras_hipotenusa()">Calcular</button>
+                  <P>
+                    Valor da Hipotenusa:
+                    <input type="number" id="pitagoras_hipotenusa" readonly>
+        </div>
+      </div>
+      <div id="catetos">
+        <div>
+          <P>Teorema de Pitagoras
+            <BR> a&sup2= h &sup2 - b&sup2
+            <P>
+
+              h
+              <input type="number" name="H" id="pitagoras2_H">
+              <P>
+                b
+                <input type="number" name="b" id="pitagoras2_C">
+                <P>
+                  <button id="btn_teoremacalcular" text="calcular" onClick="pitagoras_cateto()">Calcular</button>
+                  <P>
+                    Valor do cateto:
+                    <input type="number" id="pitagoras_cateto" readonly>
+        </div>
+    </div>
+
+</div><!-- Fecha as tabs -->
+</div> <!-- Fecha a main -->
+<div data-role="footer"  data-position="fixed">
+  <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+</div>
+</div><!-- Fecha a page -->
+<div id="creditos" data-role="page">
+  <header data-role="header" data-position="fixed">
+    <a href="#" data-icon="back" data-iconpos="notext" data-rel="back" title="Go back">Back</a>
+    <h1>Créditos dos Autores</h1>
+  </header>
+  <div id="content" data-role="content">
+  <div><center>
+
+
+      <figure class="photo">
+        <img src="images/autores.jpg" alt="Photo dos Autores" />
+        <figcaption>Rafael e Filipa</figcaption>
+      </figure>
+
+          <p>Bruno Rafael Costa Ribero <br /><a href="mailto:rafael.ntw@gmail.com?Subject=App">Email</a><br />
+          <p>Cláudia Filipa Ferreira Trigo <br /><a href="mailto:claudiaftrigo@hotmail.com?Subject=App">Email</a><br />
+</center>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h1>Bruno Ribeiro & Cláudia Trigo</h1>
+  </div>
+</div>
+</body>
